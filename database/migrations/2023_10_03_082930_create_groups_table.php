@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('link');
             $table->bigInteger('views');
             $table->text('description');
-            $table->string('social_type');
+            $table->boolean('social_type');
             $table->boolean('is_active');
             $table->uuid('category_id');
             $table->uuid('language_id');
