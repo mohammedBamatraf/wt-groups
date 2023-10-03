@@ -27,4 +27,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($request->wantsJson()) {
+            if ($e instanceof LogicException) {
+                return sendError(__($e->getMessage()), null, $e->getCode());
+            }
+        }
+
+        return parent::render($request, $e);
+    }
 }
