@@ -12,8 +12,9 @@ class RegisterAction
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        $user=User::query()->create();
-        $token=$user->$userToken = $user->createToken('User Token');
-        return
+        $data['is_active']=true;
+        $user=User::query()->create($data);
+        $token=$user->createToken('User Token');
+        return $token->accessToken;
     }
 }
