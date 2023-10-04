@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Auth\LoginAction;
 use App\Actions\Auth\RegisterAction;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -11,41 +14,27 @@ class AuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function login(LoginRequest $request)
     {
-        //
+        $data = UserResource::make(app(LoginAction::class)($request));
+
+        return sendResponse(data:$data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
         $data = app(RegisterAction::class)($request);
+        
         return sendResponse(data:$data,);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function logout(Request $request)
     {
-        //
-    }
+        $request->user()->token()->revoke();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return sendResponse();
     }
 }
