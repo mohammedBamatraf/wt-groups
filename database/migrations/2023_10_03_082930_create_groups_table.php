@@ -18,15 +18,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('link');
             $table->bigInteger('views');
-            $table->text('description');
-            $table->boolean('social_type');
+            $table->text('description')->nullable();
+            $table->string('social_type');
             $table->boolean('is_active');
             $table->uuid('category_id');
             $table->uuid('language_id');
-            $table->uuid('collection_id');
+            // $table->uuid('collection_id');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('collection_id')->references('id')->on('collections');
+            // $table->foreign('collection_id')->references('id')->on('collections');
             $table->timestamps();
         });
     }

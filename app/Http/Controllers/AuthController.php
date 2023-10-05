@@ -26,8 +26,8 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $data = app(RegisterAction::class)($request);
-        
+
+        $data = UserResource::make(app(RegisterAction::class)($request));
         return sendResponse(data:$data,);
     }
 

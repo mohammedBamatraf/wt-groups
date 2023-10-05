@@ -25,7 +25,7 @@ class GroupFactory extends Factory
             'is_active' => $this -> faker ->boolean(),
             'category_id' =>null,
             'language_id' => null,
-            'collection_id' => null,
+            // 'collection_id' => null,
         ];
     }
 }
