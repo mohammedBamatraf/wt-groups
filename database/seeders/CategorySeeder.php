@@ -13,6 +13,10 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(5)->create();
+        // Category::factory(5)->create();
+        $news=Category::create(['name'=>'الاخبار']);
+        $news->addMedia(storage_path('images/news.png'))->preservingOriginal()->toMediaCollection('category');
+        $sports=Category::create(['name'=>'رياضة']);
+        $sports->addMedia(storage_path('images/sports.png'))->preservingOriginal()->toMediaCollection('category');
     }
 }
