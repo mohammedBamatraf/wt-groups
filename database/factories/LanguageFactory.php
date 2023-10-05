@@ -18,7 +18,7 @@ class LanguageFactory extends Factory
     {
         return
         [
-            'name' => $this->faker->languageCode(),
+            // 'name' => $this->faker->languageCode(),
         ];
     }
 }

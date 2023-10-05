@@ -13,6 +13,9 @@ class LanguageSeeder extends Seeder
      */
     public function run(): void
     {
-        Language::factory()->create();
+        $arabic=Language::create(['name'=>'العربية']);
+        $arabic->addMedia(storage_path('images/yemen.png'))->preservingOriginal()->toMediaCollection('country flag');
+        $english=Language::create(['name'=>'English']);
+        $english->addMedia(storage_path('images/america.png'))->preservingOriginal()->toMediaCollection('country flag');
     }
 }

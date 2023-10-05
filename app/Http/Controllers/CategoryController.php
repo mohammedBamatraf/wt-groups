@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Groups\NumberOfTelegramGroups;
-use App\Actions\Groups\NumberOfWhatsappGroups;
-use App\Actions\Groups\StoreGroup;
-use App\Http\Requests\GroupRequest;
+use App\Actions\Categories\GetCategories;
+use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
 
-class WTGroup extends Controller
+class CategoryController extends Controller
 {
-
-    public function numberOfWhatsappGroups()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $data = app(NumberOfWhatsappGroups::class)();
-
+        $data =CategoryResource::collection(app(GetCategories::class)());
         return sendResponse(data:$data);
     }
 
-    public function numberOfTelegramGroups()
-    {
-        $data = app(NumberOfTelegramGroups::class)();
-
-        return sendResponse(data:$data);
-    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(GroupRequest $request)
+    public function store(Request $request)
     {
-        $data = app(StoreGroup::class)($request);
-        return sendResponse();
+        //
     }
 
     /**
