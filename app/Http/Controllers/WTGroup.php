@@ -30,7 +30,7 @@ class WTGroup extends Controller
     public function store(GroupRequest $request)
     {
         $data = app(StoreGroup::class)($request);
-        return sendResponse($data);
+        return sendResponse();
     }
 
     /**

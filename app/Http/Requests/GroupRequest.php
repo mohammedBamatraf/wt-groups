@@ -32,6 +32,7 @@ class GroupRequest extends FormRequest
             'language_id' => ['required'],
             'description' =>['nullable',],
             'social_type' =>['required',Rule::in(GroupsSocialEnum::getValues())],
+            'image' => ['image'],
         ];
     }
 
