@@ -19,7 +19,8 @@ class Group extends Model
         'is_active',
         'category_id',
         'language_id',
-        'collection_id',
+        'user_id'
+        // 'collection_id',
     ];
 
     public function category()
@@ -32,9 +33,14 @@ class Group extends Model
         return $this->belongsTo(Language::class);
     }
 
-    public function collection()
+    // public function collection()
+    // {
+    //     return $this->belongsTo(Collection::class);
+    // }
+
+    public function user()
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsTo(User::class);
     }
 
     public function report()

@@ -18,13 +18,15 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         $categories = Category::select('id')->get();
-        $collections = Collection::select('id')->get();
+        // $collections = Collection::select('id')->get();
+        $users=User::select('id')->get();
         $languages = Language::select('id')->get();
 
         for ($i = 0; $i <= 100; $i++) {
             Group::factory()->create([
                 'category_id' => $categories->random()->id,
-                'collection_id' => $collections->random()->id,
+                'user_id' => $users->random()->id,
+                // 'collection_id' => $collections->random()->id,
                 'language_id'   => $languages->random()->id,
             ]);
         }
