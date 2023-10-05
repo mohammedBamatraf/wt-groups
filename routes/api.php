@@ -27,6 +27,7 @@ Route::prefix('user')->group(function () {
 Route::prefix('groups')->group(function () {
     Route::get('/whatsapp-group-number', [WTGroup::class, 'numberOfWhatsappGroups']);
     Route::get('/telegram-group-number', [WTGroup::class, 'numberOfTelegramGroups']);
+    Route::get('/', [WTGroup::class, 'index']);
 
     Route::middleware('auth:api')->group(function () {
         Route::post('/', [WTGroup::class, 'store']);
