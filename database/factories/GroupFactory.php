@@ -17,11 +17,11 @@ class GroupFactory extends Factory
     public function definition(): array
     {
         return   [
-            'name'=> $this -> faker -> name(),
+            // 'name'=> $this -> faker -> name(),
             'link' => $this -> faker -> word(),
             'views' => $this -> faker -> numberBetween(1,100000),
             'description' => $this -> faker -> text(),
-            'social_type' => $this -> faker ->boolean(),
+            // 'social_type' => $this -> faker ->boolean(),
             'is_active' => $this -> faker ->boolean(),
             'category_id' =>null,
             'language_id' => null,
