@@ -13,11 +13,11 @@ class GetGroups
     public function __invoke(ListGroupsRequest $request)
     {
         $data = $request->validated();
-        $group = Group::where([['is_active',1],['language_id',$data['language_id']]])->select(['id', 'name','views'])->when($data['category_id']==null, function ($query) use($data) {
-            return $query->where('category_id',$data['category_id']);})->get();
+        $group = Group::where([['is_active',1],['language_id',$data['language_id']],['social_type',$data['social_type']]])->select(['id', 'name','views'])->when($data['category_id'], function ($query) use($data) {
+            return $query->where('category_id',$data['category_id']);})->paginate(5);
 
-        $resource = ListGroupResource::collection($group);
-        return sendResponse(data:$resource);
+        $resource = ListGroupResource::collection($group)->appends($request->query());
+        return $resource;
     }
 
 }

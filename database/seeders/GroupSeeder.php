@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\GroupsSocialEnum;
 use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Group;
@@ -22,13 +23,39 @@ class GroupSeeder extends Seeder
         $users=User::select('id')->get();
         $languages = Language::select('id')->get();
 
-        for ($i = 0; $i <= 100; $i++) {
-            Group::factory()->create([
-                'category_id' => $categories->random()->id,
-                'user_id' => $users->random()->id,
-                // 'collection_id' => $collections->random()->id,
-                'language_id'   => $languages->random()->id,
-            ]);
-        }
+        Group::factory()->create([
+            'name'=>'قروب العائلة',
+            'category_id' => $categories[0]->id,
+            'social_type' => GroupsSocialEnum::Whatsapp,
+            'user_id' => $users->random()->id,
+            // 'collection_id' => $collections->random()->id,
+            'language_id'   => $languages[0]->id,
+        ]);
+        Group::factory()->create([
+            'name'=>'قروب البرمجه',
+            'category_id' => $categories[1]->id,
+            'social_type' => GroupsSocialEnum::Whatsapp,
+            'user_id' => $users->random()->id,
+            // 'collection_id' => $collections->random()->id,
+            'language_id'   => $languages[1]->id,
+        ]);
+
+        Group::factory()->create([
+            'name'=> 'متجر الكتروني',
+            'category_id' => $categories[0]->id,
+            'social_type' => GroupsSocialEnum::Telegram,
+            'user_id' => $users->random()->id,
+            // 'collection_id' => $collections->random()->id,
+            'language_id'   => $languages[0]->id,
+        ]);
+        Group::factory()->create([
+            'name'=>'قروب جامعة حضرموت',
+            'category_id' => $categories[1]->id,
+            'social_type' => GroupsSocialEnum::Telegram,
+            'user_id' => $users->random()->id,
+            // 'collection_id' => $collections->random()->id,
+            'language_id'   => $languages[1]->id,
+        ]);
+
     }
 }
