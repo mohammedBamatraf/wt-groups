@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WTGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::prefix('groups')->group(function () {
     Route::get('/whatsapp-group-number', [WTGroup::class, 'numberOfWhatsappGroups']);
     Route::get('/telegram-group-number', [WTGroup::class, 'numberOfTelegramGroups']);
     Route::get('/', [WTGroup::class, 'index']);
+    Route::get('/{group}', [WTGroup::class, 'show']);
 
     Route::middleware('auth:api')->group(function () {
         Route::post('/', [WTGroup::class, 'store']);
@@ -42,5 +44,10 @@ Route::prefix('languages')->group(function () {
 Route::prefix('categories')->group(function () {
 
     Route::get('/', [CategoryController::class,'index']);
+});
+
+Route::prefix('reports')->group(function () {
+
+    Route::post('/', [ReportController::class,'store']);
 });
 

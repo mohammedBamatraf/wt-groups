@@ -15,9 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->text('description');
             $table->uuid('group_id');
-            $table->uuid('user_id');
+            // $table->uuid('user_id');
             $table->foreign('group_id')->references('id')->on('groups');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
