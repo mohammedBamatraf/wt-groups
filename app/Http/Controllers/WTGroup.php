@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Groups\GetGroups;
 use App\Actions\Groups\NumberOfTelegramGroups;
 use App\Actions\Groups\NumberOfWhatsappGroups;
 use App\Actions\Groups\StoreGroup;
 use App\Http\Requests\GroupRequest;
+use App\Http\Requests\ListGroupsRequest;
 use Illuminate\Http\Request;
 
 class WTGroup extends Controller
 {
 
+    public function index(ListGroupsRequest $request)
+    {
+        return app(GetGroups::class)($request);
+    }
     public function numberOfWhatsappGroups()
     {
         $data = app(NumberOfWhatsappGroups::class)();

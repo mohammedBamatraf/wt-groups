@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListGroupsReuest extends FormRequest
+class ReportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class ListGroupsReuest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['string', 'exists:states,id'],
+            'group_id' => ['required','exists:groups,id','string'],
+            'description' => ['required','string']
         ];
     }
 }

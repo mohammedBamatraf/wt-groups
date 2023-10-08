@@ -19,7 +19,7 @@ class ReportFactory extends Factory
         return [
             'description' => $this->faker->text(),
             'group_id' => null,
-            'user_id' => null,
+            // 'user_id' => null,
         ];
     }
 }

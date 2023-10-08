@@ -15,11 +15,11 @@ class ReportSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::select('id')->get();
+        // $users = User::select('id')->get();
         $groups = Group::select('id')->get();
         for ($i = 0; $i <= 10; $i++) {
             Report::factory()->create([
-                'user_id' => $users->random()->id,
+                // 'user_id' => $users->random()->id,
                 'group_id' => $groups->random()->id,
             ]);
         }
