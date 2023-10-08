@@ -24,7 +24,7 @@ class ListGroupsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => ['nullable','string', ],//'exists:categories,id'
+            'category_id' => ['nullable','string', 'exists:categories,id'],//'exists:categories,id'
             'language_id' => ['string', 'exists:languages,id','required'],
             'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required']
         ];
