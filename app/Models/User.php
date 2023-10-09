@@ -66,11 +66,10 @@ class User extends Authenticatable
         {
             $user =auth('api')->user()->id;
 
-            $is_favorite = User::where('id',$user)->withExists('favorite',function($query)use($group_id){
-                $query->where('group_id',$group_id);
-            })->first();
+          
+            $is_favorite = Favorite::where([['group_id',$group_id],['user_id',$user]])->exists();
+                // dd($is_favorite);
 
-            $is_favorite= $is_favorite->favorite_exists;
             return $is_favorite;
         }
 
