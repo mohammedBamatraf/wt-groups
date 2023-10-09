@@ -18,4 +18,6 @@ class Favorite extends Pivot
 
     ];
 
+    protected $table= 'favorites';
+
 }
