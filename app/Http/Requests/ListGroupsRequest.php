@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Enums\GroupsSocialEnum;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class ListGroupsRequest extends FormRequest
@@ -28,5 +30,12 @@ class ListGroupsRequest extends FormRequest
             'language_id' => ['string', 'exists:languages,id','required'],
             'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required']
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            sendError($validator->errors()->first(), null, 422)
+        );
     }
 }

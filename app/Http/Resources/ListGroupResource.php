@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +19,8 @@ class ListGroupResource extends JsonResource
             'id'=> $this->id,
             'name' => $this->name,
             'views' => $this->views,
-            'image' => $this->getFirstMediaUrl('image group')
+            'image' => $this->getFirstMediaUrl('image group'),
+            'is_favorite'=>User::isFavorite($this->id),
         ];
     }
 }
