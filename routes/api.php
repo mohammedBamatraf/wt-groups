@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WTGroup;
@@ -49,5 +50,10 @@ Route::prefix('categories')->group(function () {
 Route::prefix('reports')->group(function () {
 
     Route::post('/', [ReportController::class,'store']);
+});
+
+Route::prefix('favorites')->group(function(){
+
+    Route::post('/',[FavoriteController::class,'store'])->middleware('auth:api');
 });
 

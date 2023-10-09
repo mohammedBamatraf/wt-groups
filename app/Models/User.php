@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use DB;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,5 +50,31 @@ class User extends Authenticatable
     public function collection()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Group::class,'favorites','user_id','group_id')->withTimestamps()->using(Favorite::class);
+    }
+
+    public  static function isFavorite($group_id)
+    {
+       $check_authenticated= auth()->guard('api')->check();
+
+
+        if($check_authenticated)
+        {
+            $user =auth('api')->user()->id;
+
+            $is_favorite = User::where('id',$user)->withExists('favorite',function($query)use($group_id){
+                $query->where('group_id',$group_id);
+            })->first();
+
+            $is_favorite= $is_favorite->favorite_exists;
+            return $is_favorite;
+        }
+
+        return null;
+
     }
 }
