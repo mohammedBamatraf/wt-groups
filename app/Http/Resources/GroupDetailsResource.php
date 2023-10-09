@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,7 +23,7 @@ class GroupDetailsResource extends JsonResource
             'language' => $this -> language -> name,
             'description' => $this-> description,
             'link' => $this->link,
-            'image' => $this->getFirstMediaUrl('image group')
+            'image' => $this->getFirstMediaUrl('image group'),
         ];
     }
 }

@@ -49,4 +49,15 @@ class Group extends Model implements HasMedia
     {
         return $this->hasMany(Report::class);
     }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Group::class,'favorites','group_id','user_id')->withTimestamps();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image group')->singleFile();
+
+    }
 }
