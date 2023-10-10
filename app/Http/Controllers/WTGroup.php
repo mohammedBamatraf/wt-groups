@@ -8,8 +8,11 @@ use App\Actions\Groups\NumberOfTelegramGroups;
 use App\Actions\Groups\NumberOfWhatsappGroups;
 use App\Actions\Groups\ShowGroupDetails;
 use App\Actions\Groups\StoreGroup;
+use App\Actions\Groups\UpdateGroup;
 use App\Http\Requests\GroupRequest;
 use App\Http\Requests\ListGroupsRequest;
+use App\Http\Requests\UpdateGroupRequest;
+use App\Http\Resources\GroupDetailsResource;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
@@ -55,9 +58,11 @@ class WTGroup extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateGroupRequest $request, Group $group)
     {
-        //
+        $data = GroupDetailsResource::make(app(UpdateGroup::class)($request,$group)) ;
+
+        return sendResponse(data:$data);
     }
 
     /**
