@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Favorite\GetFavoriteUser;
 use App\Actions\Favorite\SaveGroups;
 use App\Http\Requests\FavoriteRequest;
 use Illuminate\Http\Request;
@@ -11,9 +12,11 @@ class FavoriteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = app(GetFavoriteUser::class)($request);
+
+        return sendResponse(data:$data);
     }
 
     /**
