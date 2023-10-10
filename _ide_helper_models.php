@@ -61,6 +61,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Favorite
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $group_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereGroupId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereUserId($value)
+ */
+	class Favorite extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Group
  *
  * @property string $id
@@ -76,6 +97,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Group> $favorite
+ * @property-read int|null $favorite_count
  * @property-read \App\Models\Language $language
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
@@ -164,6 +187,8 @@ namespace App\Models{
  * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Collection> $collection
  * @property-read int|null $collection_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $favorite
+ * @property-read int|null $favorite_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Actions\Groups\GetGroups;
 use App\Actions\Groups\NumberOfTelegramGroups;
 use App\Actions\Groups\NumberOfWhatsappGroups;
+use App\Actions\Groups\ShowGroupDetails;
 use App\Actions\Groups\StoreGroup;
 use App\Http\Requests\GroupRequest;
 use App\Http\Requests\ListGroupsRequest;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class WTGroup extends Controller
@@ -15,7 +17,7 @@ class WTGroup extends Controller
 
     public function index(ListGroupsRequest $request)
     {
-        return app(GetGroups::class)($request);
+        return sendResponse(data:app(GetGroups::class)($request));
     }
     public function numberOfWhatsappGroups()
     {
@@ -36,15 +38,16 @@ class WTGroup extends Controller
     public function store(GroupRequest $request)
     {
         $data = app(StoreGroup::class)($request);
-        return sendResponse();
+        return sendResponse(data:$data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Group $group)
     {
-        //
+        $data = app(ShowGroupDetails::class)($group);
+        return sendResponse(data:$data);
     }
 
     /**

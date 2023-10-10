@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListGroupResource extends JsonResource
+class GroupDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,12 @@ class ListGroupResource extends JsonResource
         return [
             'id'=> $this->id,
             'name' => $this->name,
-            'views' => $this->views,
+            'views' => $this -> views,
+            'category' => $this -> category -> name,
+            'language' => $this -> language -> name,
+            'description' => $this-> description,
+            'link' => $this->link,
             'image' => $this->getFirstMediaUrl('image group'),
-            'is_favorite'=>User::isFavorite($this->id),
         ];
     }
 }

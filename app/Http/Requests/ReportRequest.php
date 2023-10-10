@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ReportRequest extends FormRequest
 {
@@ -25,5 +27,13 @@ class ReportRequest extends FormRequest
             'group_id' => ['required','exists:groups,id','string'],
             'description' => ['required','string']
         ];
+    }
+
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            sendError($validator->errors()->first(), null, 422)
+        );
     }
 }

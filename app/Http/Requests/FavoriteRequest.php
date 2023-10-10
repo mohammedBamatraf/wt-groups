@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\GroupsSocialEnum;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
-class ListGroupsRequest extends FormRequest
+class FavoriteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +24,8 @@ class ListGroupsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => ['nullable','string', 'exists:categories,id'],//'exists:categories,id'
-            'language_id' => ['string', 'exists:languages,id','required'],
-            'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required']
+            'is_favorite' =>['required','boolean'],
+            'group_id' =>['required','exists:groups,id']
         ];
     }
 
