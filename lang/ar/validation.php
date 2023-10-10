@@ -236,6 +236,10 @@ return [
         'child' => 'الاطفال',
         'passengers' => 'الركاب',
         'passengers.*.is_adult' => 'بالغ',
-        'passengers.*.name' => 'الاسم'
+        'passengers.*.name' => 'الاسم',
+        'link'=> 'الرابط',
+        'category_id'=> 'التصنيف',
+        'language_id'=>'اللغه',
+        'social_type'=>'نوع التواصل الاجتماعي',
     ],
 ];

@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Favorite\GetFavoriteUser;
+use App\Actions\Favorite\SaveGroups;
+use App\Http\Requests\FavoriteRequest;
 use Illuminate\Http\Request;
 
-class WtGroup extends Controller
+class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = app(GetFavoriteUser::class)($request);
+
+        return sendResponse(data:$data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FavoriteRequest $request)
     {
-        //
+        $data = app(SaveGroups::class)($request);
+
+        return sendResponse(data: $data);
     }
 
     /**
