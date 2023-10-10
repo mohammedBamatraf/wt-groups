@@ -241,5 +241,7 @@ return [
         'category_id'=> 'التصنيف',
         'language_id'=>'اللغه',
         'social_type'=>'نوع التواصل الاجتماعي',
+        'is_favorite' => 'هل هو مفضل',
+        'group_id' => 'القروب'
     ],
 ];
