@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Groups\GetGroups;
+use App\Actions\Groups\GetUserGroups;
 use App\Actions\Groups\NumberOfTelegramGroups;
 use App\Actions\Groups\NumberOfWhatsappGroups;
 use App\Actions\Groups\ShowGroupDetails;
@@ -19,6 +20,7 @@ class WTGroup extends Controller
     {
         return sendResponse(data:app(GetGroups::class)($request));
     }
+
     public function numberOfWhatsappGroups()
     {
         $data = app(NumberOfWhatsappGroups::class)();
@@ -61,8 +63,14 @@ class WTGroup extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Group $group)
     {
-        //
+        $group ->delete();
+        return sendResponse();
+    }
+
+    public function getUserGroups(Request $request)
+    {
+        return sendResponse(data:app(GetUserGroups::class)($request));
     }
 }
