@@ -24,13 +24,19 @@ Route::prefix('user')->group(function () {
 
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 });
 
 Route::prefix('groups')->group(function () {
     Route::get('/whatsapp-group-number', [WTGroup::class, 'numberOfWhatsappGroups']);
     Route::get('/telegram-group-number', [WTGroup::class, 'numberOfTelegramGroups']);
     Route::get('/', [WTGroup::class, 'index']);
+    
     Route::get('/{group}', [WTGroup::class, 'show']);
+    Route::middleware('auth:api')->group(function(){
+        Route::get('/user-groups', [WTGroup::class, 'getUserGroups']);
+        Route::delete('/{group}', [WTGroup::class, 'destroy']);
+    });
 
     Route::middleware('auth:api')->group(function () {
         Route::post('/', [WTGroup::class, 'store']);
@@ -52,8 +58,9 @@ Route::prefix('reports')->group(function () {
     Route::post('/', [ReportController::class,'store']);
 });
 
-Route::prefix('favorites')->group(function(){
+Route::prefix('favorites')->middleware('auth:api')->group(function(){
 
-    Route::post('/',[FavoriteController::class,'store'])->middleware('auth:api');
+    Route::post('/',[FavoriteController::class,'store']);
+    Route::get('/',[FavoriteController::class,'index']);
 });
 
