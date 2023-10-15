@@ -27,7 +27,7 @@ class UpdateGroupRequest extends FormRequest
     {
         return [
             'name' => ['string','nullable'],
-            'link'=> ['string','unique:groups,link','nullable'],
+            'link'=> ['string',Rule::unique('groups')->ignore($this->route('group')),'nullable'],
             'category_id' => ['string','nullable'],
             'language_id' => ['string','nullable'],
             'description' => ['nullable','string'],

@@ -34,7 +34,7 @@ Route::prefix('groups')->group(function () {
 
     Route::get('/{group}', [WTGroup::class, 'show']);
     Route::middleware('auth:api')->group(function(){
-        Route::get('/user-groups', [WTGroup::class, 'getUserGroups']);
+        Route::get('/user/get-groups', [WTGroup::class, 'getUserGroups']);
         Route::delete('/{group}', [WTGroup::class, 'destroy']);
         // Route::update('/{group}', [WTGroup::class, 'update']);
         Route::patch('/{group}',[WTGroup::class, 'update']);

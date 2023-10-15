@@ -15,6 +15,7 @@ class GetUserGroups
 
     public function __invoke(Request $request)
     {
+      
         $data = $request->validate([
             'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required']
         ]);
