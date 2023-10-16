@@ -19,7 +19,7 @@ class ListGroupResource extends JsonResource
             'id'=> $this->id,
             'name' => $this->name,
             'views' => $this->views,
-            'image' => $this->getFirstMediaUrl('image group'),
+            'image' => $this->getFirstMediaUrl('image group')?:null,
             'is_favorite'=>User::isFavorite($this->id),
         ];
     }
