@@ -15,7 +15,7 @@ class AdvertisementResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'image' => $this->getFirstMediaUrl($request->header('Accept-Language')),
+            'image' => $this->getFirstMediaUrl(app()->getLocale()),
             'link' => $this ->link
         ];
     }
