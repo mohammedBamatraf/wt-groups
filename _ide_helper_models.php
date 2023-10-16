@@ -12,6 +12,31 @@
 
 namespace App\Models{
 /**
+ * App\Models\Advertisement
+ *
+ * @property string $id
+ * @property int $state
+ * @property string $language_code
+ * @property string $link
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereLanguageCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereUpdatedAt($value)
+ */
+	class Advertisement extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property string $id
