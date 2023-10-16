@@ -1,5 +1,7 @@
 <?php
 
+use Olssonm\VeryBasicAuth\Http\Middleware\VeryBasicAuth;
+
 return [
 
     /*
@@ -32,6 +34,7 @@ return [
         Illuminate\Cookie\Middleware\EncryptCookies::class,
         Illuminate\Session\Middleware\StartSession::class,
         Spatie\WebTinker\Http\Middleware\Authorize::class,
+        VeryBasicAuth::class,
     ],
 
     /*
