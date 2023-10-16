@@ -16,8 +16,10 @@ class Localization
     public function handle(Request $request, Closure $next): Response
     {
         // Check header request and determine localizaton
-        $local = ($request->hasHeader('Accept-Language')) ? $request->header('Accept-Language') : 'ar';
-        app()->setLocale($local);
+       $request->hasHeader('Accept-Language') ? $request->header('Accept-Language') : $request->headers->set('Accept-Language','en');
+        app()->setLocale($request->header('Accept-Language') );
+
+
         return $next($request);
     }
 }

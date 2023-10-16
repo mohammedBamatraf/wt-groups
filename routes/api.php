@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
@@ -64,5 +65,10 @@ Route::prefix('favorites')->middleware('auth:api')->group(function(){
 
     Route::post('/',[FavoriteController::class,'store']);
     Route::get('/',[FavoriteController::class,'index']);
+});
+Route::prefix('advertisement')->group(function(){
+
+    Route::post('/',[AdvertisementController::class,'store']);
+    // Route::get('/',[FavoriteController::class,'index']);
 });
 
