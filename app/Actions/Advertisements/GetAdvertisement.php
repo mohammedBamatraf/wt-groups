@@ -1,17 +1,18 @@
 <?php
 namespace App\Actions\Advertisements;
 
-use App\Http\Requests\AdvertisementRequest;
+use App\Http\Resources\AdvertisementResource;
 use App\Models\Advertisement;
 
 
-class CreateAdvertisement
+class GetAdvertisement
 {
-    public function __invoke(AdvertisementRequest $request)
+    public function __invoke()
     {
 
+        $advertisements = Advertisement::get();
 
-
+        return AdvertisementResource::collection($advertisements);
 
     }
 }

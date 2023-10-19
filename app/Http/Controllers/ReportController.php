@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Reports\CreateReport;
+use App\Actions\Reports\GetReport;
 use App\Http\Requests\ReportRequest;
 use App\Models\Report;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return app(GetReport::class)();
     }
 
     /**

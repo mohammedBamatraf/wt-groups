@@ -59,6 +59,7 @@ Route::prefix('categories')->group(function () {
 Route::prefix('reports')->group(function () {
 
     Route::post('/', [ReportController::class,'store']);
+    Route::get('/',[ReportController::class,'index']);
 });
 
 Route::prefix('favorites')->middleware('auth:api')->group(function(){
@@ -69,6 +70,6 @@ Route::prefix('favorites')->middleware('auth:api')->group(function(){
 Route::prefix('advertisement')->group(function(){
 
     Route::post('/',[AdvertisementController::class,'store']);
-    // Route::get('/',[FavoriteController::class,'index']);
+    Route::get('/',[AdvertisementController::class,'index']);
 });
 
