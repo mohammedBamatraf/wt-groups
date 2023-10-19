@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\User;
+use App\Enums\LanguageCodeEnum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListGroupResource extends JsonResource
+class AdvertisementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,12 @@ class ListGroupResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
-            'id'=> $this->id,
-            'name' => $this->name,
-            'views' => $this->views,
-            'image' => $this->getFirstMediaUrl('image group')?:null,
-            'is_favorite'=>User::isFavorite($this->id),
+            'id' => $this -> id,
+            'image' => $this->getFirstMediaUrl('image advertisement'),
+            'link' => $this ->link,
+            'state' => $this -> state
         ];
     }
 }

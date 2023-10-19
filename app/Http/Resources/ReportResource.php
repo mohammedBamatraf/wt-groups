@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListGroupResource extends JsonResource
+class ReportResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +15,8 @@ class ListGroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=> $this->id,
-            'name' => $this->name,
-            'views' => $this->views,
-            'image' => $this->getFirstMediaUrl('image group')?:null,
-            'is_favorite'=>User::isFavorite($this->id),
+            'group'=> $this -> group -> name,
+            'description' => $this ->description
         ];
     }
 }

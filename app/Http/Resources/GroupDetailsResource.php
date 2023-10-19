@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Advertisement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListGroupResource extends JsonResource
+class GroupDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +19,13 @@ class ListGroupResource extends JsonResource
         return [
             'id'=> $this->id,
             'name' => $this->name,
-            'views' => $this->views,
+            'views' => $this -> views,
+            'category' => CategoryResource::make($this -> category ),
+            'language' => LanguageResource::make($this -> language),
+            'description' => $this-> description,
+            'link' => $this->link,
             'image' => $this->getFirstMediaUrl('image group')?:null,
-            'is_favorite'=>User::isFavorite($this->id),
+            'ad'=> $this->getAdvertisement($request)?AdvertisementResource::make($this->getAdvertisement($request)):null,
         ];
     }
 }

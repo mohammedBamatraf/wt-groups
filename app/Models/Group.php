@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -48,5 +49,27 @@ class Group extends Model implements HasMedia
     public function report()
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Group::class,'favorites','group_id','user_id')->withTimestamps();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image group')->singleFile();
+
+    }
+    public function getAdvertisement(Request $request)
+    {
+        $language_code = app()->getLocale();
+        $ad = Advertisement:: where([['language_code' , $language_code],['state',1]]) -> first();
+        if ($ad){
+            return $ad;
+        }
+        return null;
+
+
     }
 }

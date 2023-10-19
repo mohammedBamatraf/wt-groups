@@ -12,6 +12,31 @@
 
 namespace App\Models{
 /**
+ * App\Models\Advertisement
+ *
+ * @property string $id
+ * @property int $state
+ * @property string $language_code
+ * @property string $link
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereLanguageCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Advertisement whereUpdatedAt($value)
+ */
+	class Advertisement extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property string $id
@@ -61,6 +86,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Favorite
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $group_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereGroupId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereUserId($value)
+ */
+	class Favorite extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Group
  *
  * @property string $id
@@ -76,6 +122,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Group> $favorite
+ * @property-read int|null $favorite_count
  * @property-read \App\Models\Language $language
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
@@ -133,11 +181,9 @@ namespace App\Models{
  * @property string $id
  * @property string $description
  * @property string $group_id
- * @property string $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Group $group
- * @property-read \App\Models\User $user
  * @method static \Database\Factories\ReportFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Report newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Report newQuery()
@@ -147,7 +193,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Report whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Report whereUserId($value)
  */
 	class Report extends \Eloquent {}
 }
@@ -167,6 +212,8 @@ namespace App\Models{
  * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Collection> $collection
  * @property-read int|null $collection_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $favorite
+ * @property-read int|null $favorite_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens

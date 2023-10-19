@@ -2,18 +2,16 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ReportRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,16 +22,7 @@ class ReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'group_id' => ['required','exists:groups,id','string'],
-            'description' => ['required','string']
+            'name'=>['string']
         ];
-    }
-
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            sendError($validator->errors()->first(), null, 422)
-        );
     }
 }
