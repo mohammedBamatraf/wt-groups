@@ -26,6 +26,7 @@ Route::prefix('user')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+    Route::delete('/delete-account', [AuthController::class, 'deleteAccount'])->middleware('auth:api');
 });
 
 Route::prefix('groups')->group(function () {

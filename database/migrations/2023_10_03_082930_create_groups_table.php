@@ -25,7 +25,7 @@ return new class extends Migration
             $table->uuid('language_id');
             // $table->uuid('collection_id');
             $table->uuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('category_id')->references('id')->on('categories');
             // $table->foreign('collection_id')->references('id')->on('collections');

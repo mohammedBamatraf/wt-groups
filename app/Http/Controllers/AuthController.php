@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Auth\DeleteAccount;
 use App\Actions\Auth\LoginAction;
 use App\Actions\Auth\RegisterAction;
 use App\Http\Requests\LoginRequest;
@@ -34,6 +35,13 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
+
+        return sendResponse();
+    }
+
+    public function deleteAccount()
+    {
+        app(DeleteAccount::class)();
 
         return sendResponse();
     }
