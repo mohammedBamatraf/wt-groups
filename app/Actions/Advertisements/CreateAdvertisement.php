@@ -13,7 +13,7 @@ class CreateAdvertisement
     {
         $data = $request->validated();
         $ad = Advertisement::create($data+['state'=>true]);
-        $ad->addMedia($data['image'])->toMediaCollection($data['language_code']);
+        $ad->addMedia($data['image'])->toMediaCollection('image advertisement');
         return $ad ;
     }
 }
