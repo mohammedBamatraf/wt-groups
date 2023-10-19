@@ -9,7 +9,6 @@ Class GetReport{
 
     public function __invoke()
     {
-
         $reports = ReportResource::collection(Report::all());
         return $reports;
     }

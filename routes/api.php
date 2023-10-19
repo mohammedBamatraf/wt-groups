@@ -61,6 +61,7 @@ Route::prefix('reports')->group(function () {
 
     Route::post('/', [ReportController::class,'store']);
     Route::get('/',[ReportController::class,'index']);
+    Route::post('/details',[ReportController::class,'getReportDetails']);
 });
 
 Route::prefix('favorites')->middleware('auth:api')->group(function(){

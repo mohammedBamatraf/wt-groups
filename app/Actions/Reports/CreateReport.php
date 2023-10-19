@@ -13,7 +13,7 @@ Class CreateReport{
         $report = Report::create($data);
         $group = Group::where('id',$data['group_id'])->first();
         $number_of_report = $group->report()->count();
-        if ($number_of_report>10)
+        if ($number_of_report>5)
         {
             $group->is_active=false;
             $group->save();
