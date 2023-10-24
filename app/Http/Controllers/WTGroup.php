@@ -24,16 +24,22 @@ class WTGroup extends Controller
         return sendResponse(data:app(GetGroups::class)($request));
     }
 
-    public function numberOfWhatsappGroups()
+    public function numberOfWhatsappGroups(Request $request)
     {
-        $data = app(NumberOfWhatsappGroups::class)();
+        $data = $request ->validate([
+            'language_id' => ['string','required','exists:languages,id']
+        ]);
+        $data = app(NumberOfWhatsappGroups::class)($data);
 
         return sendResponse(data:$data);
     }
 
-    public function numberOfTelegramGroups()
+    public function numberOfTelegramGroups(Request $request)
     {
-        $data = app(NumberOfTelegramGroups::class)();
+        $data = $request ->validate([
+            'language_id' => ['string','required','exists:languages,id']
+        ]);
+        $data = app(NumberOfTelegramGroups::class)($data);
 
         return sendResponse(data:$data);
     }
