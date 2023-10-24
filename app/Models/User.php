@@ -3,14 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use DB;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_active',
     ];
 
     /**
@@ -30,7 +34,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -42,4 +46,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function collection()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Group::class,'favorites','user_id','group_id')->withTimestamps()->using(Favorite::class);
+    }
+
+    public  static function isFavorite($group_id)
+    {
+       $check_authenticated= auth()->guard('api')->check();
+
+
+        if($check_authenticated)
+        {
+            $user =auth('api')->user()->id;
+
+          
+            $is_favorite = Favorite::where([['group_id',$group_id],['user_id',$user]])->exists();
+                // dd($is_favorite);
+
+            return $is_favorite;
+        }
+
+        return null;
+
+    }
 }
