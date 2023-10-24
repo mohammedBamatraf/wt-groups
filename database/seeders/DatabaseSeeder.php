@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             GroupSeeder::class,
             ReportSeeder::class,
+            AdminSeeder::class,
         ]);
 
         Artisan::call('passport:install');

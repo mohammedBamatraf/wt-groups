@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Actions\Groups;
 
 use App\Http\Requests\GroupRequest;
@@ -13,11 +14,17 @@ class GetGroups
     public function __invoke(ListGroupsRequest $request)
     {
         $data = $request->validated();
-        $group = Group::where([['is_active',1],['language_id',$data['language_id']],['social_type',$data['social_type']]])->select(['id', 'name','views'])->when($data['category_id'], function ($query) use($data) {
-            return $query->where('category_id',$data['category_id']);})->paginate(5);
+        $name = $data['name'];
+
+        $group = Group::inRandomOrder()->where([['is_active', 1], ['language_id', $data['language_id']], ['social_type', $data['social_type']]])->select(['id', 'name', 'views'])
+            ->when($data['category_id'], function ($query) use ($data) {
+                return $query->where('category_id', $data['category_id']);
+            })
+            ->when($data['name'], function ($query) use($data) {
+                return $query->where('name','like',);
+            })->paginate(5);
 
         $resource = ListGroupResource::collection($group)->appends($request->query());
         return $resource;
     }
-
 }

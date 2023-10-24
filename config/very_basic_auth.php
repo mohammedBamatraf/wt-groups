@@ -5,7 +5,7 @@
      */
     return [
         // Username
-        'user'              => env('BASIC_AUTH_USERNAME', 'user@user.com'),
+        'user'              => env('BASIC_AUTH_USERNAME', 'admin'),
 
         // Password
         'password'          => env('BASIC_AUTH_PASSWORD', '123456789'),
