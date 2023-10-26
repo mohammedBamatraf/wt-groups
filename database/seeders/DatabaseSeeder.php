@@ -18,11 +18,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            CollectionSeeder::class,
+            // CollectionSeeder::class,
             LanguageSeeder::class,
             CategorySeeder::class,
-            GroupSeeder::class,
-            ReportSeeder::class,
+            // GroupSeeder::class,
+            // ReportSeeder::class,
+            AdminSeeder::class,
         ]);
 
         Artisan::call('passport:install');
