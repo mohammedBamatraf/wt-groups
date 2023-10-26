@@ -18976,6 +18976,67 @@
      
 }
 
+    namespace Illuminate\Database\Eloquent\Factories { 
+            /**
+     * 
+     *
+     * @template TModel of \Illuminate\Database\Eloquent\Model
+     * @method $this trashed()
+     */ 
+        class Factory {
+                    /**
+         * 
+         *
+         * @see \Spatie\Translatable\TranslatableServiceProvider::packageRegistered()
+         * @param array|string $locales
+         * @param mixed|null $value
+         * @static 
+         */ 
+        public static function translations($locales, $value)
+        {
+                        return \Illuminate\Database\Eloquent\Factories\Factory::translations($locales, $value);
+        }
+         
+    }
+     
+}
+
+    namespace Database\Factories { 
+            /**
+     * 
+     *
+     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+     */ 
+        class UserFactory {
+         
+    }
+            /**
+     * 
+     *
+     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Collection>
+     */ 
+        class CollectionFactory {
+         
+    }
+            /**
+     * 
+     *
+     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
+     */ 
+        class GroupFactory {
+         
+    }
+            /**
+     * 
+     *
+     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
+     */ 
+        class ReportFactory {
+         
+    }
+     
+}
+
 
 namespace  { 
             class App extends \Illuminate\Support\Facades\App {}

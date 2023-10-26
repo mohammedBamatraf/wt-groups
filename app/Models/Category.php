@@ -7,18 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory,HasUuids, InteractsWithMedia;
-    protected $fillable = [
-        'name'
-    ];
-
+    use HasFactory, HasUuids, InteractsWithMedia, HasTranslations;
+    protected $fillable = ['name'];
+    public $translatable = ['name'];
 
     public function group()
     {
         return $this->hasMany(Group::class);
     }
-
 }

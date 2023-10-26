@@ -14,6 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::create(['name'=>'mohammed','email'=>'admin@admin.com','password'=>Hash::make('123456789')]);
+        Admin::create(['name'=>'naif','email'=>'admin@admin.com','password'=>Hash::make('1234qwer')]);
     }
 }
