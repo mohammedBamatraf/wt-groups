@@ -19010,30 +19010,6 @@
         class UserFactory {
          
     }
-            /**
-     * 
-     *
-     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Collection>
-     */ 
-        class CollectionFactory {
-         
-    }
-            /**
-     * 
-     *
-     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
-     */ 
-        class GroupFactory {
-         
-    }
-            /**
-     * 
-     *
-     * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
-     */ 
-        class ReportFactory {
-         
-    }
      
 }
 

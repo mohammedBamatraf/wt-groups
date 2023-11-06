@@ -20,6 +20,8 @@ class Group extends Model implements HasMedia
         'description',
         'social_type',
         'is_active',
+        'vip',
+        'vip_end_at',
         'category_id',
         'language_id',
         'user_id'

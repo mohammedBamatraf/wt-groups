@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class ListGroupsRequest extends FormRequest
+class AdminUpdateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +26,18 @@ class ListGroupsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'name'        => ['string','nullable'],
-            'category_id' => ['nullable','string', 'exists:categories,id'],//'exists:categories,id'
-            'language_id' => ['string', 'exists:languages,id','required'],
-            'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required'],
-            'excluded_ids' => ['array',],
-            'excluded_ids.*' => ['string','nullable'],
+            'id' => ['required','exists:groups,id'],
+            'name' => ['string','nullable'],
+            'link'=> ['string',Rule::unique('groups')->ignore($this->id),'nullable'],
+            'category_id' => ['string','nullable'],
+            'language_id' => ['string','nullable'],
+            'description' => ['nullable','string'],
+            'social_type' => ['string','nullable',Rule::in(GroupsSocialEnum::getValues())],
+            'image' => ['image','nullable'],
+            'is_active' => ['nullable','boolean'],
+            'vip_type'=> ['nullable',Rule::in([0,1,2])]
         ];
     }
-
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

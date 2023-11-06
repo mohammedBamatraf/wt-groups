@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WTGroup;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
 
     Route::post('/login', [AdminController::class, 'adminLogin']);
-    // Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
-    // Route::delete('/delete-account', [AuthController::class, 'deleteAccount'])->middleware('auth:api');
+    Route::middleware('auth:admin')->group(function () {
+    Route::patch('/update-group', [AdminController::class, 'updateGroup']);
+    });
 });
 
 Route::prefix('user')->group(function () {

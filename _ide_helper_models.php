@@ -151,6 +151,7 @@ namespace App\Models{
  * @property string $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $vip
  * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Group> $favorite
  * @property-read int|null $favorite_count
@@ -176,6 +177,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereVip($value)
  */
 	class Group extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
