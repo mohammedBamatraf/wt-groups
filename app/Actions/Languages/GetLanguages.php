@@ -7,7 +7,7 @@ class GetLanguages
 {
     public function __invoke()
     {
-        $languages = Language::get();
+        $languages = Language::with('media')->get();
         return $languages;
     }
 }

@@ -10,6 +10,7 @@ use App\Actions\Admin\AdminVipGroup;
 use App\Http\Requests\AdminLoginRequest;
 use App\Http\Requests\AdminUpdateGroupRequest;
 use App\Http\Requests\VipRequest;
+use App\Http\Resources\AdminGroupResource;
 use App\Http\Resources\AdminResource;
 use App\Models\Admin;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class AdminController extends Controller
 
     public function updateGroup(AdminUpdateGroupRequest $request)
     {
-        app(AdminUpdateGroupAction::class)($request);
-        return sendResponse();
+        $data = AdminGroupResource::make(app(AdminUpdateGroupAction::class)($request));
+        return sendResponse(data:$data);
     }
 }
