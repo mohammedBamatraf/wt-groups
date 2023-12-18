@@ -70,9 +70,9 @@ echo 'Start Task Run Composer ({{ $release }})'
 pwd
 cd {{ $new_release_dir }}
 {{--composer update--}}
-{{--php composer.phar update--}}
+{{-- php composer.phar update --}}
 echo "install composer ({{ $release }})"
-php composer.phar install {{--no-interaction --prefer-dist --optimize-autoloader -q --no-ansi --no-scripts --no-progress > /dev/null--}}
+php composer.phar update --no-interaction --prefer-dist --optimize-autoloader -q --no-ansi --no-scripts --no-progress > /dev/null
 php composer.phar dumpautoload
 echo "composer installed  for ({{ $release }})"
 
@@ -95,7 +95,7 @@ current="{{ $app_dir }}/{{ $server_dir }}/current"
 echo "crate public folder for {{ $branch }} if not exist"
 mkdir -p "{{ $app_dir}}/iqsteps-api.rakeb.fun"
 
-@if ($branch!='main')
+{{-- @if ($branch!='main')
     @php
         $public_folder_path="$app_dir/iqsteps-api.bootfi.com/";
     @endphp
@@ -113,8 +113,10 @@ mkdir -p "{{ $app_dir}}/iqsteps-api.rakeb.fun"
     @php
         $public_folder_path="$app_dir/public_html/";
     @endphp
-@endif
-
+@endif --}}
+@php
+        $public_folder_path="$app_dir/public_html/";
+@endphp
 
 
 {{-- echo "copy build to public "
