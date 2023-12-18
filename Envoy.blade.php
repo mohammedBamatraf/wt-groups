@@ -72,7 +72,7 @@ cd {{ $new_release_dir }}
 {{--composer update--}}
 {{--php composer.phar update--}}
 echo "install composer ({{ $release }})"
-php composer.phar install --no-interaction --prefer-dist --optimize-autoloader -q --no-ansi --no-scripts --no-progress > /dev/null
+php composer.phar install {{--no-interaction --prefer-dist --optimize-autoloader -q --no-ansi --no-scripts --no-progress > /dev/null--}}
 php composer.phar dumpautoload
 echo "composer installed  for ({{ $release }})"
 
