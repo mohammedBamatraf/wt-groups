@@ -48,7 +48,7 @@ class Group extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function report()
+    public function reports()
     {
         return $this->hasMany(Report::class);
     }

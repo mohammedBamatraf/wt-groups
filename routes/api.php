@@ -36,7 +36,11 @@ Route::prefix('user')->group(function () {
     Route::post('/signup', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
-    Route::delete('/delete-account', [AuthController::class, 'deleteAccount'])->middleware('auth:api');
+    Route::middleware('auth:api')->group(function(){
+        Route::post('/block-user/{blocked_user_id}', [AuthController::class, 'blockUser']);
+        Route::post('/unblock-user/{blocked_user_id}', [AuthController::class, 'unblockUser']);
+        Route::delete('/delete-account', [AuthController::class, 'deleteAccount']);
+    });
 });
 
 Route::prefix('groups')->group(function () {
@@ -69,7 +73,8 @@ Route::prefix('categories')->group(function () {
 
 Route::prefix('reports')->group(function () {
 
-    Route::post('/', [ReportController::class, 'store']);
+    Route::middleware('auth:api')->post('/', [ReportController::class, 'store']);
+
     Route::middleware('auth:admin')->group(function () {
         Route::get('/', [ReportController::class, 'index']);
         Route::post('/details', [ReportController::class, 'getReportDetails']);

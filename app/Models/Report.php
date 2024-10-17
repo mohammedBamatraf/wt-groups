@@ -11,15 +11,15 @@ class Report extends Model
     use HasFactory,HasUuids;
 
     protected $fillable = [
-        // 'user_id',
+        'user_id',
         'group_id',
         'description',
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function group()
     {

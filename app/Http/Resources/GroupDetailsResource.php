@@ -26,7 +26,7 @@ class GroupDetailsResource extends JsonResource
             'link' => $this->link,
             'image' => $this->getFirstMediaUrl('image group')?:null,
             'ad'=> $this->getAdvertisement($request)?AdvertisementResource::make($this->getAdvertisement($request)):null,
-            'reports' => $this->report
+            'reports' => $this->reports
         ];
     }
 }

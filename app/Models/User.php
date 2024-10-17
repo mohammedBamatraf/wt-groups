@@ -7,13 +7,15 @@ namespace App\Models;
 use DB;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasUuids;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -54,26 +56,39 @@ class User extends Authenticatable
 
     public function favorite()
     {
-        return $this->belongsToMany(Group::class,'favorites','user_id','group_id')->withTimestamps()->using(Favorite::class);
+        return $this->belongsToMany(Group::class, 'favorites', 'user_id', 'group_id')->withTimestamps()->using(Favorite::class);
     }
+
+    public function report(): HasMany
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    public function blockedUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'blocked_users',
+            'user_id',
+            'blocked_user_id'
+        )->withTimestamps();
+    }
+
 
     public  static function isFavorite($group_id)
     {
-       $check_authenticated= auth()->guard('api')->check();
+        $check_authenticated = auth()->guard('api')->check();
 
 
-        if($check_authenticated)
-        {
-            $user =auth('api')->user()->id;
+        if ($check_authenticated) {
+            $user = auth('api')->user()->id;
 
-          
-            $is_favorite = Favorite::where([['group_id',$group_id],['user_id',$user]])->exists();
-                // dd($is_favorite);
+
+            $is_favorite = Favorite::where([['group_id', $group_id], ['user_id', $user]])->exists();
 
             return $is_favorite;
         }
 
         return null;
-
     }
 }
