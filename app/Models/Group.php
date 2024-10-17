@@ -20,6 +20,8 @@ class Group extends Model implements HasMedia
         'description',
         'social_type',
         'is_active',
+        'vip',
+        'vip_end_at',
         'category_id',
         'language_id',
         'user_id'
@@ -46,7 +48,7 @@ class Group extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function report()
+    public function reports()
     {
         return $this->hasMany(Report::class);
     }

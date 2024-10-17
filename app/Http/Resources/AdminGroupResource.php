@@ -2,12 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Advertisement;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GroupDetailsResource extends JsonResource
+class AdminGroupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -26,7 +24,9 @@ class GroupDetailsResource extends JsonResource
             'link' => $this->link,
             'image' => $this->getFirstMediaUrl('image group')?:null,
             'ad'=> $this->getAdvertisement($request)?AdvertisementResource::make($this->getAdvertisement($request)):null,
-            'reports' => $this->reports
+            'reports' => $this->report,
+            'vip' => $this->vip,
+            'is_active' => $this -> is_active,
         ];
     }
 }

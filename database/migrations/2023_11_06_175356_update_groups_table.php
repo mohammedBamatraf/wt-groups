@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reports', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->text('description');
-            $table->uuid('group_id');
-
-            $table->foreign('group_id')->references('id')->on('groups')->cascadeOnDelete();
-
-            $table->timestamps();
+        Schema::table('groups', function (Blueprint $table) {
+            $table->integer('vip');
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reports');
+        Schema::table('groups', function (Blueprint $table) {
+            $table->dropColumn('vip');
+        });
     }
 };

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('category_id')->references('id')->on('categories');
             // $table->foreign('collection_id')->references('id')->on('collections');
+
             $table->timestamps();
         });
     }

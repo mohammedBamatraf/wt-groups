@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Auth\BlockUserAction;
 use App\Actions\Auth\DeleteAccount;
 use App\Actions\Auth\LoginAction;
 use App\Actions\Auth\RegisterAction;
+use App\Actions\Auth\UnblockUserAction;
+use App\Http\Requests\BlockUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -19,7 +22,7 @@ class AuthController extends Controller
     {
         $data = UserResource::make(app(LoginAction::class)($request));
 
-        return sendResponse(data:$data);
+        return sendResponse(data: $data);
     }
 
     /**
@@ -29,7 +32,7 @@ class AuthController extends Controller
     {
 
         $data = UserResource::make(app(RegisterAction::class)($request));
-        return sendResponse(data:$data,);
+        return sendResponse(data: $data,);
     }
 
     public function logout(Request $request)
@@ -42,6 +45,20 @@ class AuthController extends Controller
     public function deleteAccount()
     {
         app(DeleteAccount::class)();
+
+        return sendResponse();
+    }
+
+    public function blockUser(string $blocked_user_id,)
+    {
+        app(BlockUserAction::class)($blocked_user_id);
+
+        return sendResponse();
+    }
+
+    public function unblockUser(string $blocked_user_id,)
+    {
+        app(UnblockUserAction::class)($blocked_user_id);
 
         return sendResponse();
     }

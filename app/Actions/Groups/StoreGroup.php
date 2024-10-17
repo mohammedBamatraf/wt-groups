@@ -11,7 +11,7 @@ class StoreGroup
     {
         $data = $request->validated();
         $user_id=auth()->user()->id;
-        $group = Group::create($data+['is_active'=>true,'views' => 0,'user_id' =>$user_id]);
+        $group = Group::create($data+['is_active'=>true,'views' => 0,'user_id' =>$user_id,'vip'=>0]);
 
         if($request->hasFile('image'))
         {
