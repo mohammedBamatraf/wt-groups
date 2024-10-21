@@ -74,6 +74,15 @@ class User extends Authenticatable
         )->withTimestamps();
     }
 
+    public function ignoredGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Group::class,
+            'ignored_groups',
+            'user_id',
+            'group_id'
+        )->withTimestamps();
+    }
 
     public  static function isFavorite($group_id)
     {

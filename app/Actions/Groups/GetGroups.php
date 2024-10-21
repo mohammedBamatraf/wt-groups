@@ -23,7 +23,13 @@ class GetGroups
 
                 $query->where('user_id', $user->id);
 
-            })->whereNotIn('user_id',$user->blockedUsers()->pluck('id')->toArray());
+            })
+            ->whereNotIn('user_id',$user->blockedUsers()->pluck('id')->toArray())
+            ->whereDoesntHave('usersWhoIgnored', function ($query) use ($user) {
+
+                $query->where('user_id', $user->id);
+
+            });
         })->where(
             [
                 [

@@ -9,7 +9,7 @@
 /**
  * success response method.
  *
- * @return \Illuminate\Http\Response
+ * return \Illuminate\Http\Response
  */
 function sendResponse($message = 'OK', $data = null, $status_code = 200)
 {
