@@ -5,11 +5,10 @@ use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\IgnoreGroupsController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WTGroup;
-use App\Models\Admin;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +26,7 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/login', [AdminController::class, 'adminLogin']);
     Route::middleware('auth:admin')->group(function () {
-    Route::patch('/update-group', [AdminController::class, 'updateGroup']);
+        Route::patch('/update-group', [AdminController::class, 'updateGroup']);
     });
 });
 
@@ -36,7 +35,7 @@ Route::prefix('user')->group(function () {
     Route::post('/signup', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
-    Route::middleware('auth:api')->group(function(){
+    Route::middleware('auth:api')->group(function () {
         Route::post('/block-user/{blocked_user_id}', [AuthController::class, 'blockUser']);
         Route::post('/unblock-user/{blocked_user_id}', [AuthController::class, 'unblockUser']);
         Route::delete('/delete-account', [AuthController::class, 'deleteAccount']);
@@ -54,6 +53,7 @@ Route::prefix('groups')->group(function () {
         Route::delete('/{group}', [WTGroup::class, 'destroy']);
         // Route::update('/{group}', [WTGroup::class, 'update']);
         Route::patch('/{group}', [WTGroup::class, 'update']);
+        Route::post('/{group_id}/ignore-groups', IgnoreGroupsController::class);
     });
 
     Route::middleware('auth:api')->group(function () {
@@ -73,7 +73,9 @@ Route::prefix('categories')->group(function () {
 
 Route::prefix('reports')->group(function () {
 
-    Route::middleware('auth:api')->post('/', [ReportController::class, 'store']);
+    Route::middleware('auth:api')->group(function () {
+        Route::post('/', [ReportController::class, 'store']);
+    });
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/', [ReportController::class, 'index']);

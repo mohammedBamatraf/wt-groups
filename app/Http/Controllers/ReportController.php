@@ -28,23 +28,6 @@ class ReportController extends Controller
         return sendResponse();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Report $report)
-    {
-        //
-    }
-
-
     public function getReportDetails(Request $request)
     {
 

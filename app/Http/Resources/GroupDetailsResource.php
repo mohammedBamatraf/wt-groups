@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Advertisement;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,7 +27,9 @@ class GroupDetailsResource extends JsonResource
             'link' => $this->link,
             'image' => $this->getFirstMediaUrl('image group')?:null,
             'ad'=> $this->getAdvertisement($request)?AdvertisementResource::make($this->getAdvertisement($request)):null,
-            'reports' => $this->reports
+            'reports' => $this->reports,
+            'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
+            'created_by' => UserDetailsResource::make($this->user),
         ];
     }
 }

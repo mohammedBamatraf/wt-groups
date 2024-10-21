@@ -58,6 +58,11 @@ class Group extends Model implements HasMedia
         return $this->belongsToMany(Group::class,'favorites','group_id','user_id')->withTimestamps();
     }
 
+    public function usersWhoIgnored()
+    {
+        return $this->belongsToMany(User::class, 'ignored_groups', 'group_id', 'user_id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('image group')->singleFile();
