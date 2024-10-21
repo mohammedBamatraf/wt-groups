@@ -24,8 +24,8 @@ class FavoriteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'is_favorite' =>['required','boolean',],
-            'group_id' =>['required','exists:groups,id']
+            'is_favorite' => ['required', 'boolean'],
+            'group_id' => ['required', 'exists:groups,id'],
         ];
     }
 

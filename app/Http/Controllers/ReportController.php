@@ -6,7 +6,6 @@ use App\Actions\Reports\CreateReport;
 use App\Actions\Reports\GetReport;
 use App\Actions\Reports\GroupReportDetails;
 use App\Http\Requests\ReportRequest;
-use App\Models\Report;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -25,6 +24,7 @@ class ReportController extends Controller
     public function store(ReportRequest $request)
     {
         app(CreateReport::class)($request);
+
         return sendResponse();
     }
 
@@ -32,6 +32,7 @@ class ReportController extends Controller
     {
 
         $data = app(GroupReportDetails::class)($request);
-        return sendResponse(data:$data);
+
+        return sendResponse(data: $data);
     }
 }

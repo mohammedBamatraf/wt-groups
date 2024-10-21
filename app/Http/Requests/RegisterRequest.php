@@ -5,8 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\ValidationException;
-
 
 class RegisterRequest extends FormRequest
 {
@@ -26,9 +24,9 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required','String',],
-            'password' => ['required','String','confirmed'],
-            'email'=> ['email','required','unique:users,email'],
+            'name' => ['required', 'String'],
+            'password' => ['required', 'String', 'confirmed'],
+            'email' => ['email', 'required', 'unique:users,email'],
         ];
     }
 

@@ -2,9 +2,7 @@
 
 namespace App\Actions\Groups;
 
-use App\Http\Requests\GroupRequest;
 use App\Http\Requests\ListGroupsRequest;
-use App\Http\Resources\GroupResource;
 use App\Http\Resources\ListGroupResource;
 use App\Models\Group;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,36 +22,37 @@ class GetGroups
                 $query->where('user_id', $user->id);
 
             })
-            ->whereNotIn('user_id',$user->blockedUsers()->pluck('id')->toArray())
-            ->whereDoesntHave('usersWhoIgnored', function ($query) use ($user) {
+                ->whereNotIn('user_id', $user->blockedUsers()->pluck('id')->toArray())
+                ->whereDoesntHave('usersWhoIgnored', function ($query) use ($user) {
 
-                $query->where('user_id', $user->id);
+                    $query->where('user_id', $user->id);
 
-            });
+                });
         })->where(
             [
                 [
                     'is_active',
-                    1
+                    1,
                 ],
                 [
                     'language_id',
-                    $data['language_id']
+                    $data['language_id'],
                 ],
                 [
                     'social_type',
-                    $data['social_type']
-                ]
+                    $data['social_type'],
+                ],
             ]
         )->select([
             'id',
             'name',
-            'views'
+            'views',
         ])->when($data['category_id'], function ($query) use ($data) {
             return $query->where('category_id', $data['category_id']);
         })->with('media')->paginate(5);
 
         $resource = ListGroupResource::collection($group)->appends($request->query());
+
         return $resource;
     }
 }

@@ -11,8 +11,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Language extends Model implements HasMedia
 {
     use HasFactory,HasUuids,InteractsWithMedia;
+
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function group()

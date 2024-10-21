@@ -1,17 +1,13 @@
 <?php
-namespace App\Actions\Auth;
 
-use App\Exceptions\LogicException;
-use App\Http\Requests\LoginRequest;
-use App\Models\User;
+namespace App\Actions\Auth;
 
 class DeleteAccount
 {
     public function __invoke()
     {
-        $user= auth()->user();
-        if($user)
-        {
+        $user = auth()->user();
+        if ($user) {
             $user->delete();
         }
     }

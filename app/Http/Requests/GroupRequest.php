@@ -26,12 +26,12 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string'],
-            'link'=> ['required','string','unique:groups,link'],
+            'name' => ['required', 'string'],
+            'link' => ['required', 'string', 'unique:groups,link'],
             'category_id' => ['required'],
             'language_id' => ['required'],
-            'description' =>['nullable',],
-            'social_type' =>['required',Rule::in(GroupsSocialEnum::getValues())],
+            'description' => ['nullable'],
+            'social_type' => ['required', Rule::in(GroupsSocialEnum::getValues())],
             'image' => ['image'],
         ];
     }

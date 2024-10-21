@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use App\Actions\Advertisements\CreateAdvertisement;
 use App\Actions\Advertisements\GetAdvertisement;
 use App\Http\Requests\AdvertisementRequest;
@@ -17,7 +16,8 @@ class AdvertisementController extends Controller
     public function index()
     {
         $data = app(GetAdvertisement::class)();
-        return sendResponse(data:$data);
+
+        return sendResponse(data: $data);
     }
 
     /**
@@ -26,7 +26,8 @@ class AdvertisementController extends Controller
     public function store(AdvertisementRequest $request)
     {
         $data = app(CreateAdvertisement::class)($request);
-        return sendResponse(data:$data);
+
+        return sendResponse(data: $data);
     }
 
     /**

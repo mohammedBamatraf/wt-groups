@@ -9,7 +9,6 @@ use App\Models\Report;
 
 class CreateReport
 {
-
     public function __invoke(ReportRequest $request)
     {
         $user = auth('api')->user();
@@ -31,6 +30,7 @@ class CreateReport
             $group->is_active = false;
             $group->save();
         }
+
         return $report;
     }
 }

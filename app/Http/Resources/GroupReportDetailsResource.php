@@ -16,15 +16,15 @@ class GroupReportDetailsResource extends JsonResource
     {
 
         return [
-            'id'=> $this->id,
+            'id' => $this->id,
             'name' => $this->name,
-            'views' => $this -> views,
-            'category' => $this -> category -> name,
-            'language' => $this -> language->name,
-            'description' => $this-> description,
+            'views' => $this->views,
+            'category' => $this->category->name,
+            'language' => $this->language->name,
+            'description' => $this->description,
             'link' => $this->link,
-            'image' => $this->getFirstMediaUrl('image group')?:null,
-            'reports' =>$this->report()->select(['description'])->get()
+            'image' => $this->getFirstMediaUrl('image group') ?: null,
+            'reports' => $this->report()->select(['description'])->get(),
         ];
     }
 }

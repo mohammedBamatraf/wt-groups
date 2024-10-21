@@ -16,11 +16,11 @@ class ListGroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=> $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'views' => $this->views,
-            'image' => $this->getFirstMediaUrl('image group')?:null,
-            'is_favorite'=>User::isFavorite($this->id),
+            'image' => $this->getFirstMediaUrl('image group') ?: null,
+            'is_favorite' => User::isFavorite($this->id),
         ];
     }
 }

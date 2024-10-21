@@ -24,7 +24,7 @@ class Group extends Model implements HasMedia
         'vip_end_at',
         'category_id',
         'language_id',
-        'user_id'
+        'user_id',
         // 'collection_id',
     ];
 
@@ -55,7 +55,7 @@ class Group extends Model implements HasMedia
 
     public function favorite()
     {
-        return $this->belongsToMany(Group::class,'favorites','group_id','user_id')->withTimestamps();
+        return $this->belongsToMany(Group::class, 'favorites', 'group_id', 'user_id')->withTimestamps();
     }
 
     public function usersWhoIgnored()
@@ -68,15 +68,16 @@ class Group extends Model implements HasMedia
         $this->addMediaCollection('image group')->singleFile();
 
     }
+
     public function getAdvertisement(Request $request)
     {
         $language_code = app()->getLocale();
-        $ad = Advertisement:: where([['language_code' , $language_code],['state',1]]) -> first();
-        if ($ad){
+        $ad = Advertisement::where([['language_code', $language_code], ['state', 1]])->first();
+        if ($ad) {
             return $ad;
         }
-        return null;
 
+        return null;
 
     }
 }

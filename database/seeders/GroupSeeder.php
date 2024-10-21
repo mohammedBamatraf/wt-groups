@@ -8,7 +8,6 @@ use App\Models\Collection;
 use App\Models\Group;
 use App\Models\Language;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder
@@ -20,41 +19,41 @@ class GroupSeeder extends Seeder
     {
         $categories = Category::select('id')->get();
         // $collections = Collection::select('id')->get();
-        $users=User::select('id')->get();
+        $users = User::select('id')->get();
         $languages = Language::select('id')->get();
 
         Group::factory()->create([
-            'name'=>'قروب العائلة',
+            'name' => 'قروب العائلة',
             'category_id' => $categories[0]->id,
             'social_type' => GroupsSocialEnum::Whatsapp,
             'user_id' => $users->random()->id,
             // 'collection_id' => $collections->random()->id,
-            'language_id'   => $languages[0]->id,
+            'language_id' => $languages[0]->id,
         ]);
         Group::factory()->create([
-            'name'=>'قروب البرمجه',
+            'name' => 'قروب البرمجه',
             'category_id' => $categories[1]->id,
             'social_type' => GroupsSocialEnum::Whatsapp,
             'user_id' => $users->random()->id,
             // 'collection_id' => $collections->random()->id,
-            'language_id'   => $languages[1]->id,
+            'language_id' => $languages[1]->id,
         ]);
 
         Group::factory()->create([
-            'name'=> 'متجر الكتروني',
+            'name' => 'متجر الكتروني',
             'category_id' => $categories[0]->id,
             'social_type' => GroupsSocialEnum::Telegram,
             'user_id' => $users->random()->id,
             // 'collection_id' => $collections->random()->id,
-            'language_id'   => $languages[0]->id,
+            'language_id' => $languages[0]->id,
         ]);
         Group::factory()->create([
-            'name'=>'قروب جامعة حضرموت',
+            'name' => 'قروب جامعة حضرموت',
             'category_id' => $categories[1]->id,
             'social_type' => GroupsSocialEnum::Telegram,
             'user_id' => $users->random()->id,
             // 'collection_id' => $collections->random()->id,
-            'language_id'   => $languages[1]->id,
+            'language_id' => $languages[1]->id,
         ]);
 
     }

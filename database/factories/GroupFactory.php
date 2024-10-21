@@ -16,14 +16,14 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
-        return   [
+        return [
             // 'name'=> $this -> faker -> name(),
-            'link' => $this -> faker -> word(),
-            'views' => $this -> faker -> numberBetween(1,100000),
-            'description' => $this -> faker -> text(),
+            'link' => $this->faker->word(),
+            'views' => $this->faker->numberBetween(1, 100000),
+            'description' => $this->faker->text(),
             // 'social_type' => $this -> faker ->boolean(),
-            'is_active' => $this -> faker ->boolean(),
-            'category_id' =>null,
+            'is_active' => $this->faker->boolean(),
+            'category_id' => null,
             'language_id' => null,
             // 'collection_id' => null,
         ];

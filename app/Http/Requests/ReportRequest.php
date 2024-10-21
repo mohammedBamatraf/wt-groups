@@ -24,11 +24,10 @@ class ReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'group_id' => ['required','exists:groups,id','string'],
-            'description' => ['required','string']
+            'group_id' => ['required', 'exists:groups,id', 'string'],
+            'description' => ['required', 'string'],
         ];
     }
-
 
     protected function failedValidation(Validator $validator)
     {

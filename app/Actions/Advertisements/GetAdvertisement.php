@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Actions\Advertisements;
 
 use App\Http\Resources\AdvertisementResource;
 use App\Models\Advertisement;
-
 
 class GetAdvertisement
 {

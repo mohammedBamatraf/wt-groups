@@ -26,18 +26,19 @@ class AdminUpdateGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required','exists:groups,id'],
-            'name' => ['string','nullable'],
-            'link'=> ['string',Rule::unique('groups')->ignore($this->id),'nullable'],
-            'category_id' => ['string','nullable'],
-            'language_id' => ['string','nullable'],
-            'description' => ['nullable','string'],
-            'social_type' => ['string','nullable',Rule::in(GroupsSocialEnum::getValues())],
-            'image' => ['image','nullable'],
-            'is_active' => ['nullable','boolean'],
-            'vip_type'=> ['nullable',Rule::in([0,1,2])]
+            'id' => ['required', 'exists:groups,id'],
+            'name' => ['string', 'nullable'],
+            'link' => ['string', Rule::unique('groups')->ignore($this->id), 'nullable'],
+            'category_id' => ['string', 'nullable'],
+            'language_id' => ['string', 'nullable'],
+            'description' => ['nullable', 'string'],
+            'social_type' => ['string', 'nullable', Rule::in(GroupsSocialEnum::getValues())],
+            'image' => ['image', 'nullable'],
+            'is_active' => ['nullable', 'boolean'],
+            'vip_type' => ['nullable', Rule::in([0, 1, 2])],
         ];
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

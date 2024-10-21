@@ -11,8 +11,10 @@ use Spatie\Translatable\HasTranslations;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, HasUuids, InteractsWithMedia, HasTranslations;
+    use HasFactory, HasTranslations, HasUuids, InteractsWithMedia;
+
     protected $fillable = ['name'];
+
     public $translatable = ['name'];
 
     public function group()

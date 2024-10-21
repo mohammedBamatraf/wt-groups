@@ -26,13 +26,13 @@ class UpdateGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string','nullable'],
-            'link'=> ['string',Rule::unique('groups')->ignore($this->route('group')),'nullable'],
-            'category_id' => ['string','nullable'],
-            'language_id' => ['string','nullable'],
-            'description' => ['nullable','string'],
-            'social_type' => ['string','nullable',Rule::in(GroupsSocialEnum::getValues())],
-            'image' => ['image','nullable'],
+            'name' => ['string', 'nullable'],
+            'link' => ['string', Rule::unique('groups')->ignore($this->route('group')), 'nullable'],
+            'category_id' => ['string', 'nullable'],
+            'language_id' => ['string', 'nullable'],
+            'description' => ['nullable', 'string'],
+            'social_type' => ['string', 'nullable', Rule::in(GroupsSocialEnum::getValues())],
+            'image' => ['image', 'nullable'],
         ];
     }
 
@@ -40,5 +40,4 @@ class UpdateGroupRequest extends FormRequest
     {
         throw new HttpResponseException(sendError($validator->errors()->first()));
     }
-
 }
