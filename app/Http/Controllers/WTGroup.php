@@ -18,38 +18,39 @@ use Illuminate\Http\Request;
 
 class WTGroup extends Controller
 {
-
     public function index(ListGroupsRequest $request)
     {
-        return sendResponse(data:app(GetGroups::class)($request));
+        return sendResponse(data: app(GetGroups::class)($request));
     }
 
     public function numberOfWhatsappGroups(Request $request)
     {
-        $data = $request ->validate([
-            'language_id' => ['string','required','exists:languages,id']
+        $data = $request->validate([
+            'language_id' => ['string', 'required', 'exists:languages,id'],
         ]);
         $data = app(NumberOfWhatsappGroups::class)($data);
 
-        return sendResponse(data:$data);
+        return sendResponse(data: $data);
     }
 
     public function numberOfTelegramGroups(Request $request)
     {
-        $data = $request ->validate([
-            'language_id' => ['string','required','exists:languages,id']
+        $data = $request->validate([
+            'language_id' => ['string', 'required', 'exists:languages,id'],
         ]);
         $data = app(NumberOfTelegramGroups::class)($data);
 
-        return sendResponse(data:$data);
+        return sendResponse(data: $data);
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(GroupRequest $request)
     {
         $data = app(StoreGroup::class)($request);
-        return sendResponse(data:$data);
+
+        return sendResponse(data: $data);
     }
 
     /**
@@ -58,7 +59,8 @@ class WTGroup extends Controller
     public function show(Group $group)
     {
         $data = app(ShowGroupDetails::class)($group);
-        return sendResponse(data:$data);
+
+        return sendResponse(data: $data);
     }
 
     /**
@@ -66,9 +68,9 @@ class WTGroup extends Controller
      */
     public function update(UpdateGroupRequest $request, Group $group)
     {
-        $data = GroupDetailsResource::make(app(UpdateGroup::class)($request,$group)) ;
+        $data = GroupDetailsResource::make(app(UpdateGroup::class)($request, $group));
 
-        return sendResponse(data:$data);
+        return sendResponse(data: $data);
     }
 
     /**
@@ -76,12 +78,13 @@ class WTGroup extends Controller
      */
     public function destroy(Group $group)
     {
-        $group ->delete();
+        $group->delete();
+
         return sendResponse();
     }
 
     public function getUserGroups(Request $request)
     {
-        return sendResponse(data:app(GetUserGroups::class)($request));
+        return sendResponse(data: app(GetUserGroups::class)($request));
     }
 }

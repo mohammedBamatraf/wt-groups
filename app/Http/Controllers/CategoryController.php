@@ -13,8 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data =CategoryResource::collection(app(GetCategories::class)());
-        return sendResponse(data:$data);
+        $data = CategoryResource::collection(app(GetCategories::class)());
+
+        return sendResponse(data: $data);
     }
 
     /**

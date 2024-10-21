@@ -16,8 +16,8 @@ class UserResource extends JsonResource
     {
         return
         [
-           'name' =>$this->name,
-           'token' => $this ->createToken('User Token')->accessToken
+            'name' => $this->name,
+            'token' => $this->createToken('User Token')->accessToken,
         ];
     }
 }

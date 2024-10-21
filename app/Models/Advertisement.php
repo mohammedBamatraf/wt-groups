@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Advertisement extends Model implements HasMedia
 {
-    use HasFactory,InteractsWithMedia,HasUuids;
+    use HasFactory,HasUuids,InteractsWithMedia;
 
-    protected $fillable=['state','link','language_code'];
+    protected $fillable = ['state', 'link', 'language_code'];
 }

@@ -15,8 +15,8 @@ class AdminResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'email'=>$this->email,
-            'token' => $this->token
+            'email' => $this->email,
+            'token' => $this->token,
         ];
     }
 }

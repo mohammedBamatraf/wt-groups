@@ -10,21 +10,17 @@ use Carbon\Carbon;
 
 class AdminUpdateGroupAction
 {
-
     public function __invoke(AdminUpdateGroupRequest $request)
     {
         $data = $request->validated();
         $group = Group::where('id', $data['id'])->first();
-        if($group){
+        if ($group) {
             $group->update($data);
-            if($request->hasFile('image'))
-            {
+            if ($request->hasFile('image')) {
                 $group->addMedia($request['image'])->toMediaCollection('image group');
             }
-            if($request->vip_type)
-            {
-                switch($data['vip_type'])
-                {
+            if ($request->vip_type) {
+                switch ($data['vip_type']) {
                     case 1:
                         $group->update(['vip' => 1]);
                         $delay = Carbon::now()->addHours(5);
@@ -41,8 +37,7 @@ class AdminUpdateGroupAction
 
                 }
             }
-        }
-        else{
+        } else {
             throw new LogicException('response.not-found');
         }
         $group->refresh();

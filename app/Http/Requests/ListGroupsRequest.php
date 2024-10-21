@@ -27,11 +27,11 @@ class ListGroupsRequest extends FormRequest
     {
         return [
             // 'name'        => ['string','nullable'],
-            'category_id' => ['nullable','string', 'exists:categories,id'],//'exists:categories,id'
-            'language_id' => ['string', 'exists:languages,id','required'],
-            'social_type' => [Rule::in(GroupsSocialEnum::getValues()),'required'],
-            'excluded_ids' => ['array',],
-            'excluded_ids.*' => ['string','nullable'],
+            'category_id' => ['nullable', 'string', 'exists:categories,id'], //'exists:categories,id'
+            'language_id' => ['string', 'exists:languages,id', 'required'],
+            'social_type' => [Rule::in(GroupsSocialEnum::getValues()), 'required'],
+            'excluded_ids' => ['array'],
+            'excluded_ids.*' => ['string', 'nullable'],
         ];
     }
 

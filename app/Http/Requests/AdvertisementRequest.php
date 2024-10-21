@@ -27,8 +27,8 @@ class AdvertisementRequest extends FormRequest
     {
         return [
             'image' => ['required', 'image'],
-            'language_code' => ['required', 'string', Rule::in(LanguageCodeEnum::getValues()),'unique:advertisements,language_code'],
-            'link' => ['required','string','unique:advertisements,link']
+            'language_code' => ['required', 'string', Rule::in(LanguageCodeEnum::getValues()), 'unique:advertisements,language_code'],
+            'link' => ['required', 'string', 'unique:advertisements,link'],
         ];
     }
 

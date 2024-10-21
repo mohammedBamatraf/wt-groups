@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use DB;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,7 +14,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids;
+    use HasApiTokens, HasFactory, HasUuids, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -84,14 +83,12 @@ class User extends Authenticatable
         )->withTimestamps();
     }
 
-    public  static function isFavorite($group_id)
+    public static function isFavorite($group_id)
     {
         $check_authenticated = auth()->guard('api')->check();
 
-
         if ($check_authenticated) {
             $user = auth('api')->user()->id;
-
 
             $is_favorite = Favorite::where([['group_id', $group_id], ['user_id', $user]])->exists();
 

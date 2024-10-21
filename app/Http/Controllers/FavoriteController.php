@@ -16,7 +16,7 @@ class FavoriteController extends Controller
     {
         $data = app(GetFavoriteUser::class)($request);
 
-        return sendResponse(data:$data);
+        return sendResponse(data: $data);
     }
 
     /**

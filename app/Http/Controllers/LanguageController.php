@@ -14,8 +14,9 @@ class LanguageController extends Controller
     public function index()
     {
         // dd(app(GetLanguages::class)());
-        $data =LanguageResource::collection(app(GetLanguages::class)());
-        return sendResponse(data:$data);
+        $data = LanguageResource::collection(app(GetLanguages::class)());
+
+        return sendResponse(data: $data);
     }
 
     /**

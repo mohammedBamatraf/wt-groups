@@ -15,18 +15,18 @@ class AdminGroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=> $this->id,
+            'id' => $this->id,
             'name' => $this->name,
-            'views' => $this -> views,
-            'category' => CategoryResource::make($this -> category ),
-            'language' => LanguageResource::make($this -> language),
-            'description' => $this-> description,
+            'views' => $this->views,
+            'category' => CategoryResource::make($this->category),
+            'language' => LanguageResource::make($this->language),
+            'description' => $this->description,
             'link' => $this->link,
-            'image' => $this->getFirstMediaUrl('image group')?:null,
-            'ad'=> $this->getAdvertisement($request)?AdvertisementResource::make($this->getAdvertisement($request)):null,
+            'image' => $this->getFirstMediaUrl('image group') ?: null,
+            'ad' => $this->getAdvertisement($request) ? AdvertisementResource::make($this->getAdvertisement($request)) : null,
             'reports' => $this->report,
             'vip' => $this->vip,
-            'is_active' => $this -> is_active,
+            'is_active' => $this->is_active,
         ];
     }
 }

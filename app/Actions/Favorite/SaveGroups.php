@@ -14,12 +14,14 @@ class SaveGroups
 
         /** @var User $user */
         $user = auth()->user();
-        if (!$data['is_favorite']) {
+        if (! $data['is_favorite']) {
             $user->favorite()->detach($data['group_id']);
+
             return false;
         }
 
         $user->favorite()->syncWithoutDetaching($data['group_id']);
+
         return true;
     }
 }

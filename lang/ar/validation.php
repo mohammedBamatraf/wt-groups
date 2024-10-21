@@ -237,11 +237,11 @@ return [
         'passengers' => 'الركاب',
         'passengers.*.is_adult' => 'بالغ',
         'passengers.*.name' => 'الاسم',
-        'link'=> 'الرابط',
-        'category_id'=> 'التصنيف',
-        'language_id'=>'اللغه',
-        'social_type'=>'نوع التواصل الاجتماعي',
+        'link' => 'الرابط',
+        'category_id' => 'التصنيف',
+        'language_id' => 'اللغه',
+        'social_type' => 'نوع التواصل الاجتماعي',
         'is_favorite' => 'هل هو مفضل',
-        'group_id' => 'القروب'
+        'group_id' => 'القروب',
     ],
 ];

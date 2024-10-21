@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Collection;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CollectionSeeder extends Seeder
@@ -14,9 +13,8 @@ class CollectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $users=User::select('id')->get();
-        for($i=0;$i<=10;$i++)
-        {
+        $users = User::select('id')->get();
+        for ($i = 0; $i <= 10; $i++) {
             Collection::factory()->create(['user_id' => $users->random()->id]);
         }
     }

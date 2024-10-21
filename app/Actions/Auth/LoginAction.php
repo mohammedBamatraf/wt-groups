@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Actions\Auth;
 
 use App\Exceptions\LogicException;
@@ -10,10 +11,9 @@ class LoginAction
     public function __invoke(LoginRequest $request)
     {
         $data = $request->validated();
-        $user = User::where('email',$data['email'])->first();
+        $user = User::where('email', $data['email'])->first();
 
-        if(!$user || !password_verify($data['password'],$user->password))
-        {
+        if (! $user || ! password_verify($data['password'], $user->password)) {
             throw new LogicException(__('responses.login.failed'), 403);
         }
 
